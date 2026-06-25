@@ -1,0 +1,221 @@
+:root {
+    --bg-pink-light: #fff5f6;
+    --bg-pink-medium: #ffcdd2;
+    --main-pink: #ff4081; /* Rosa Moranguinho */
+    --strawberry-red: #ff1744;
+    --blueberry-blue: #2979ff;
+    --text-color: #4a0014;
+    
+    /* Configuração das novas fontes estéticas */
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-pink-light);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Efeito para colocar a SUA imagem transparente no fundo */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('fundo-frutas.jpg'); 
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35; 
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Elementos Flutuantes (Emojis de Frutinhas Rodando e Flutuando) */
+.floating-decor {
+    position: absolute;
+    font-size: 2.3rem;
+    opacity: 0.6;
+    animation: floatAndRotate 12s infinite linear;
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
+.floating-decor:nth-child(1) { top: 10%; left: 8%; animation-duration: 10s; }
+.floating-decor:nth-child(2) { top: 75%; left: 10%; animation-duration: 14s; }
+.floating-decor:nth-child(3) { top: 15%; left: 85%; animation-duration: 11s; }
+.floating-decor:nth-child(4) { top: 80%; left: 80%; animation-duration: 13s; }
+.floating-decor:nth-child(5) { top: 45%; left: 88%; animation-duration: 9s; }
+
+@keyframes floatAndRotate {
+    0% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-25px) rotate(180deg) scale(1.1); }
+    100% { transform: translateY(0) rotate(360deg) scale(1); }
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 3rem 2.5rem;
+    border-radius: 32px;
+    box-shadow: 0 20px 40px rgba(255, 23, 68, 0.08);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    border: 1px solid rgba(255, 64, 129, 0.2); /* Borda fina e clean em vez de tracejada */
+    position: relative;
+    z-index: 10;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--strawberry-red);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-family: var(--font-title);
+    font-style: italic; /* Toque editorial romântico */
+    font-size: 1.3rem;
+    color: var(--main-pink);
+    margin-top: 6px;
+}
+
+.status {
+    background-color: #fff0f2;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Visual clean de marca de cosmético/moda */
+    padding: 10px 24px;
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    display: inline-block;
+    border: 1px solid rgba(255, 128, 171, 0.3);
+}
+
+.player-turn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 2rem;
+}
+
+.cell {
+    aspect-ratio: 1;
+    background-color: #fff;
+    border: 1px solid #ffd4dc;
+    border-radius: 16px; /* Cantos arredondados mais sutis e modernos */
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(255, 182, 193, 0.2);
+}
+
+.cell:hover:not(.taken) {
+    border-color: var(--main-pink);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(255, 64, 129, 0.15);
+}
+
+.cell.taken {
+    cursor: not-allowed;
+    background-color: #fffcfd;
+    box-shadow: none;
+}
+
+/* Ícones das células mantidos fofos */
+.cell.X::before, .cell.O::before {
+    position: absolute;
+    font-size: 2.5rem;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+.cell.X::before { content: '🍓'; }
+.cell.O::before { content: '🫐'; }
+
+@keyframes popIn {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Células Vencedoras Clean */
+.cell.winner-cell {
+    background-color: #fff0f3;
+    border: 2px solid var(--main-pink);
+    animation: pulseWinner 1s infinite alternate cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.cell.winner-cell::after {
+    content: '✨';
+    position: absolute;
+    font-size: 1rem;
+    top: 6px;
+    right: 6px;
+}
+
+@keyframes pulseWinner {
+    from { transform: scale(1); }
+    to { transform: scale(1.04); box-shadow: 0 0 15px rgba(255, 64, 129, 0.2); }
+}
+
+/* Botão Clean & Chic */
+.reset-btn {
+    background: var(--text-color); /* Contraste chique escuro ou use var(--main-pink) se preferir total pink */
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(74, 0, 20, 0.15);
+}
+
+.reset-btn:hover {
+    background: var(--main-pink);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 64, 129, 0.3);
+}
+
+.reset-btn:active {
+    transform: translateY(0);
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moranguinho & Amoras 🍓 Jogo da Velha</title>
+    <link rel="icon" href="https://img.icons8.com/emoji/48/strawberry-emoji.png" type="image/png">
+    
+    <!-- Novas fontes elegantes e estéticas (Estilo Pinterest/It Girl) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Elementos flutuantes do fundo -->
+    <div class="floating-decor">🍓</div>
+    <div class="floating-decor">🫐</div>
+    <div class="floating-decor">🍓</div>
+    <div class="floating-decor">🫐</div>
+    <div class="floating-decor">🍓</div>
+
+    <div class="container">
+        <header>
+            <h1>Moranguinho</h1>
+            <p class="subtitle">& Amora Linda 💖</p>
+        </header>
+        
+        <div class="status" id="status">
+            <span class="player-turn">Vez da <span class="icon-x">🍓 Moranguinho</span></span>
+        </div>
+
+        <div class="board" id="board">
+            <button class="cell" data-index="0"></button>
+            <button class="cell" data-index="1"></button>
+            <button class="cell" data-index="2"></button>
+            <button class="cell" data-index="3"></button>
+            <button class="cell" data-index="4"></button>
+            <button class="cell" data-index="5"></button>
+            <button class="cell" data-index="6"></button>
+            <button class="cell" data-index="7"></button>
+            <button class="cell" data-index="8"></button>
+        </div>
+
+        <button class="reset-btn" id="resetBtn">Jogar de Novo! ✨</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
